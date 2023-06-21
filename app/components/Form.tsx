@@ -11,7 +11,7 @@ const Form = ({ form, setForm }: Props) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   return (
-    <form className="w-full">
+    <form className="w-full mb-3">
       <label htmlFor="currency" className="block space-y-3 text-lg">
         <span>Moneda</span>
         <input
