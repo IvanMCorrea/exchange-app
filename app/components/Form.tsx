@@ -13,8 +13,8 @@ const Form = ({ form, setForm }: Props) => {
     }
   };
   return (
-    <form className="w-full mb-3">
-      <label htmlFor="currency" className="block space-y-3 text-lg">
+    <form className="w-full">
+      <label htmlFor="currency" className="block space-y-3 text-lg mb-3">
         <span>Moneda</span>
         <input
           type="text"
@@ -25,7 +25,7 @@ const Form = ({ form, setForm }: Props) => {
           onChange={onChange}
         />
       </label>
-      <label htmlFor="value" className="block space-y-3 text-lg">
+      <label htmlFor="value" className="block space-y-3 text-lg mb-3">
         <span>Monto en ARS (pesos argentinos)</span>
         <input
           type="number"
