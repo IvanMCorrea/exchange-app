@@ -1,9 +1,30 @@
 import Client from "./client";
 
-export default function Home() {
+export default async function Home() {
+  const data = await fetch(
+    "https://www.dolarsi.com/api/api.php?type=valoresprincipales"
+  ).then(
+    (res) =>
+      res.json() as Promise<
+        { casa: { nombre: string; compra: string; venta: string } }[]
+      >
+  );
+
+  const cotizaciones = data
+    .filter((cotizacion) =>
+      ["Dolar Oficial", "Dolar Bolsa", "Dolar Blue"].includes(
+        cotizacion.casa.nombre
+      )
+    )
+    .map((cotizacion) => ({
+      nombre: cotizacion.casa.nombre,
+      compra: Number(cotizacion.casa.compra.split(",")[0]),
+      venta: Number(cotizacion.casa.venta.split(",")[0]),
+    }));
+
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
-      <Client />
+      <Client cotizaciones={cotizaciones} />
     </main>
   );
 }

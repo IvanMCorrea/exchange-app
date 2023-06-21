@@ -8,7 +8,9 @@ type Props = {
 
 const Form = ({ form, setForm }: Props) => {
   const onChange = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.value <= 999999) {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   };
   return (
     <form className="w-full mb-3">
@@ -17,6 +19,7 @@ const Form = ({ form, setForm }: Props) => {
         <input
           type="text"
           name="currency"
+          disabled
           value={form.currency}
           className="block w-full rounded-full bg-gray-200 p-2 text-xl"
           onChange={onChange}
@@ -27,6 +30,7 @@ const Form = ({ form, setForm }: Props) => {
         <input
           type="number"
           name="value"
+          max={999999}
           value={form.value}
           className="block w-full rounded-full bg-gray-200 p-2 text-right text-xl"
           onChange={onChange}
